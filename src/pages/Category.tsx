@@ -7,7 +7,7 @@ import { CategoryItem } from "../components/index";
 import { AppContext } from "@/context/createContext";
 import { useNavigate } from "react-router-dom";
 import Pages from "@/layouts/Pages";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, signInAnonymously } from "firebase/auth";
 const Category: React.FC = () => {
   const { state, addCategory } = useContext(AppContext);
   let navigate = useNavigate();
@@ -18,20 +18,31 @@ const Category: React.FC = () => {
   useEffect(() => {
     console.log("auth", auth);
     console.log("authUId", authUId);
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
+    signInAnonymously(auth)
+      .then((user: any) => {
         const uid = user.uid;
+        console.log("user", user);
 
         setAuthUid(uid);
+      })
+      .catch((error) => {
+        console.log("error", error);
         // ...
-      } else {
-        console.log("user not authenticated");
-        // User is signed out
-        // ...
-      }
-    });
+      });
+    // onAuthStateChanged(auth, (user) => {
+    //   if (user) {
+    //     // User is signed in, see docs for a list of available properties
+    //     // https://firebase.google.com/docs/reference/js/firebase.User
+    //     const uid = user.uid;
+
+    //     setAuthUid(uid);
+    //     // ...
+    //   } else {
+    //     console.log("user not authenticated");
+    //     // User is signed out
+    //     // ...
+    //   }
+    // });
     if (state?.wpCategories?.length > 0) {
       setAllCategory(state?.wpCategories);
     } else {

@@ -1,9 +1,9 @@
 export const firebaseConfig = {
-    apiKey: 'AIzaSyBuP26lQbWkl5pD66ZrsXZjOtB9Lt47aUQ',
-    authDomain: 'claire-dev-87971.firebaseapp.com',
-    projectId: 'claire-dev-87971',
-    storageBucket: 'claire-dev-87971.appspot.com',
-    messagingSenderId: '790428269592',
-    appId: '1:790428269592:web:87c27ab7fb110659c3576d',
-    measurementId: 'G-94C5TQD588'
+    apiKey: 'AIzaSyAEFgcGxQ3KWyI21v_wFvmgCa-vRBGLysA',
+    authDomain: 'react-firebase-6d101.firebaseapp.com',
+    projectId: 'react-firebase-6d101',
+    storageBucket: 'react-firebase-6d101.appspot.com',
+    messagingSenderId: '863420843982',
+    appId: '1:863420843982:web:77815d120a6c0d31dd0d9f',
+    measurementId: 'G-RQMHWZ8YYT'
 };

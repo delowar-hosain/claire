@@ -7,6 +7,7 @@ import { CategoryItem } from "../components/index";
 import { AppContext } from "@/context/createContext";
 import { useNavigate } from "react-router-dom";
 import Pages from "@/layouts/Pages";
+import { onAuthStateChanged } from "firebase/auth";
 const Category: React.FC = () => {
   const { state, addCategory } = useContext(AppContext);
   let navigate = useNavigate();
@@ -16,8 +17,21 @@ const Category: React.FC = () => {
 
   useEffect(() => {
     console.log("auth", auth);
-    setAuthUid(auth);
     console.log("authUId", authUId);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+
+        setAuthUid(uid);
+        // ...
+      } else {
+        console.log("user not authenticated");
+        // User is signed out
+        // ...
+      }
+    });
     if (state?.wpCategories?.length > 0) {
       setAllCategory(state?.wpCategories);
     } else {

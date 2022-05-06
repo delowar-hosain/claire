@@ -1,17 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useContext, useEffect, useState } from "react";
-import { CartItem } from "@/components/index";
+import React, { useContext } from "react";
+import { CartItem } from "../components/index";
 import { AppContext } from "@/context/createContext";
 import Pages from "@/layouts/Pages";
 
 const ShopingCart: React.FC = () => {
   const { state } = useContext(AppContext);
-  const [subTotal, setSubTotal] = useState<number>(0)
   const shoppingCart = state?.cart;
-
-  function updatePrice(price: number) {
-    setSubTotal(price + subTotal)
-  }
   return (
     <Pages>
       <section className="h-100 h-custom shopping-cart">

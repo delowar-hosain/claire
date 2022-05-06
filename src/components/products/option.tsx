@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 const Option: React.FC<{
   index: number;
   selectedOption: string;

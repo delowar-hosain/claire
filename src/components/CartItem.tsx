@@ -12,8 +12,7 @@ const CartItem: React.FC<{
   const [qty, setQty] = useState<number>(shopCart.qty);
   const [cartItem, setCartItem] = useState<any>(null);
   const [price, setPrice] = useState<number>(0);
-  const [img, setImg] = useState<string>("");
-  const { state, removeFromCart, updateSubTotal } = useContext(AppContext);
+  const { state, removeFromCart } = useContext(AppContext);
   useEffect(() => {
     onValue(realtimeDB("shProductList"), (snapshot) => {
       snapshot.forEach((childRecord) => {
@@ -22,6 +21,7 @@ const CartItem: React.FC<{
         }
       });
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
   useEffect(() => {
@@ -33,6 +33,7 @@ const CartItem: React.FC<{
     // } else {
     //   setPrice(product.variants[0]?.price);
     // }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartItem]);
 
   function checkVariant(): number {

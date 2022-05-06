@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 const Variants: React.FC<{
   index: number;
   selectedIndex: number;

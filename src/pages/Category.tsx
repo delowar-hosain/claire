@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { onValue } from "firebase/database";
 import { auth, realtimeDB } from "@/services/firebase/index";
-import { CategoryItem } from "../components";
+import { CategoryItem } from "../components/index";
 import { AppContext } from "@/context/createContext";
 import { useNavigate } from "react-router-dom";
 import Pages from "@/layouts/Pages";
@@ -15,13 +15,14 @@ const Category: React.FC = () => {
   const [authUId, setAuthUid] = useState<any | null>(null);
 
   useEffect(() => {
-    console.log('auth', auth)
-    setAuthUid(auth)
+    console.log("auth", auth);
+    setAuthUid(auth);
+    console.log("authUId", authUId);
     if (state?.wpCategories?.length > 0) {
       setAllCategory(state?.wpCategories);
     } else {
       onValue(realtimeDB("wpCategories"), (snapshot) => {
-        console.log('category list', snapshot)
+        console.log("category list", snapshot);
         let records: any[] = [];
         snapshot.forEach((childRecord) => {
           records.push(childRecord.val());

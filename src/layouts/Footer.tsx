@@ -1,8 +1,4 @@
-import React from 'react'
-
-type Props = {}
-
-export default function Footer({}: Props) {
+export default function Footer() {
   return (
     <div></div>
   )

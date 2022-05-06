@@ -2,16 +2,16 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext, useEffect, useState } from "react";
 import { onValue } from "firebase/database";
-import { auth, realtimeDB } from "@/services/firebase/index";
+import { realtimeDB } from "@/services/firebase/index";
 import { CategoryItem } from "../components/index";
 import { AppContext } from "@/context/createContext";
 import { useNavigate } from "react-router-dom";
 import Pages from "@/layouts/Pages";
-import { onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 const Category: React.FC = () => {
   const { state, addCategory } = useContext(AppContext);
   let navigate = useNavigate();
-
+  const auth = getAuth();
   const [allCategory, setAllCategory] = useState<any | null>(null);
   const [authUId, setAuthUid] = useState<any | null>(null);
 

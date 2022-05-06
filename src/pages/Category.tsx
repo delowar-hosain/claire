@@ -2,46 +2,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext, useEffect, useState } from "react";
 import { onValue } from "firebase/database";
-import { auth, realtimeDB } from "@/services/firebase/index";
+import { realtimeDB } from "@/services/firebase/index";
 import { CategoryItem } from "../components/index";
 import { AppContext } from "@/context/createContext";
 import { useNavigate } from "react-router-dom";
 import Pages from "@/layouts/Pages";
-import { onAuthStateChanged } from "firebase/auth";
 const Category: React.FC = () => {
   const { state, addCategory } = useContext(AppContext);
   let navigate = useNavigate();
   const [allCategory, setAllCategory] = useState<any | null>(null);
-  const [authUId, setAuthUid] = useState<any | null>(null);
 
   useEffect(() => {
-    console.log("auth", auth);
-    console.log("authUId", authUId);
-    // signInAnonymously(auth)
-    //   .then((user: any) => {
-    //     const uid = user.uid;
-    //     console.log("user", user);
-
-    //     setAuthUid(uid);
-    //   })
-    //   .catch((error) => {
-    //     console.log("error", error);
-    //     // ...
-    //   });
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
-
-        setAuthUid(uid);
-        // ...
-      } else {
-        console.log("user not authenticated");
-        // User is signed out
-        // ...
-      }
-    });
     if (state?.wpCategories?.length > 0) {
       setAllCategory(state?.wpCategories);
     } else {
